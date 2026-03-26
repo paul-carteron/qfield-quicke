@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="24"
+   height="24"
+   viewBox="0 0 6.3500001 6.3500001"
+   version="1.1"
+   id="svg1"
+   xml:space="preserve"
+   sodipodi:docname="ic_axe_24dp.svg"
+   inkscape:version="1.3.2 (091e20e, 2023-11-25, custom)"
+   inkscape:export-filename="ic_axe_24dp.svg"
+   inkscape:export-xdpi="49.200001"
+   inkscape:export-ydpi="49.200001"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg"><sodipodi:namedview
+     id="namedview1"
+     pagecolor="#505050"
+     bordercolor="#ffffff"
+     borderopacity="1"
+     inkscape:showpageshadow="0"
+     inkscape:pageopacity="0"
+     inkscape:pagecheckerboard="1"
+     inkscape:deskcolor="#505050"
+     inkscape:document-units="px"
+     inkscape:zoom="10.718743"
+     inkscape:cx="-12.688055"
+     inkscape:cy="17.912548"
+     inkscape:window-width="2400"
+     inkscape:window-height="1262"
+     inkscape:window-x="-8"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1" /><defs
+     id="defs1" /><g
+     inkscape:label="Calque 1"
+     inkscape:groupmode="layer"
+     id="layer1"><g
+       style="fill:#80cc28"
+       id="g1"
+       transform="matrix(0.30920139,0,0,0.30920139,-0.53541631,-0.53541663)"><g
+         id="SVGRepo_bgCarrier"
+         stroke-width="0" /><g
+         id="SVGRepo_tracerCarrier"
+         stroke-linecap="round"
+         stroke-linejoin="round" /><g
+         id="SVGRepo_iconCarrier"><path
+           d="M 4,12 A 1,1 0 0 1 2,12 9.983,9.983 0 0 1 18.242,4.206 V 2.758 a 1,1 0 1 1 2,0 v 4 a 1,1 0 0 1 -1,1 h -4 a 1,1 0 0 1 0,-2 h 1.743 A 7.986,7.986 0 0 0 4,12 Z m 17,-1 a 1,1 0 0 0 -1,1 7.986,7.986 0 0 1 -12.985,6.242 h 1.742 a 1,1 0 1 0 0,-2 h -4 a 1,1 0 0 0 -1,1 v 4 a 1,1 0 0 0 2,0 V 19.794 A 9.984,9.984 0 0 0 22,12 1,1 0 0 0 21,11 Z"
+           id="path1" /></g></g></g></svg>
