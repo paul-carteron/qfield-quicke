@@ -16,10 +16,56 @@ Item {
   property var positionSource: iface.findItemByObjectName("positionSource")
   property var toolbar: iface.findItemByObjectName("toolbar")
 
-  property bool reopenFeatureForm: false
+  property bool continuousCaptureEnabled: false
+  property bool pendingReopenAfterClose: false
 
   Component.onCompleted: {
     iface.addItemToPluginsToolbar(reopenFeatureFormButton)
+  }
+
+  function isActiveLayerPointLayer() {
+    return !!(dashBoard
+              && dashBoard.activeLayer
+              && dashBoard.activeLayer.geometryType() === Qgis.GeometryType.Point)
+  }
+
+  function canUseContinuousCapture() {
+    return continuousCaptureEnabled && isActiveLayerPointLayer()
+  }
+
+  function disableContinuousCapture(message) {
+    continuousCaptureEnabled = false
+    pendingReopenAfterClose = false
+
+    if (message)
+      mainWindow.displayToast(message)
+  }
+
+  function updateFeatureGeometryFromGnss() {
+    let position = positionSource.positionInformation
+
+    if (positionSource.active && position.latitudeValid && position.longitudeValid) {
+      let pos = positionSource.projectedPosition
+      let newWkt = "POINT(" + pos.x + " " + pos.y + ")"
+      let newGeometry = GeometryUtils.createGeometryFromWkt(newWkt)
+
+      overlayFeatureFormDrawer.featureModel.feature.geometry = newGeometry
+    } else {
+      mainWindow.displayToast(qsTr("Position GNSS invalide : la géométrie ne sera pas mise à jour"))
+    }
+  }
+
+  function createEmptyFeature() {
+    if (!canUseContinuousCapture())
+      return
+
+    let geometry = GeometryUtils.createGeometryFromWkt("")
+    let feature = FeatureUtils.createFeature(dashBoard.activeLayer, geometry)
+
+    overlayFeatureFormDrawer.featureModel.feature = feature
+    overlayFeatureFormDrawer.featureModel.resetAttributes(true)
+    overlayFeatureFormDrawer.state = "Add"
+    overlayFeatureFormDrawer.open()
   }
 
   QfToolButton {
@@ -27,64 +73,72 @@ Item {
 
     iconSource: "ic_reload_24dp.svg"
     round: true
-    bgcolor: reopenFeatureForm ? Theme.goodColor : Theme.darkGray
-    iconColor: reopenFeatureForm ? Theme.darkGray : Theme.goodColor
+
+    property bool validLayer: isActiveLayerPointLayer()
+
+    bgcolor: continuousCaptureEnabled ? Theme.mainColor : Theme.controlBackgroundDisabledColor
+    iconColor: continuousCaptureEnabled ? Theme.darkGray : Theme.mainTextDisabledColor
+    opacity: continuousCaptureEnabled ? 1.0 : 0.45
 
     onClicked: {
-      reopenFeatureForm = !reopenFeatureForm
+      if (!continuousCaptureEnabled) {
+        if (!validLayer) {
+          mainWindow.displayToast(qsTr("La saisie continue peut être activée uniquement sur une couche points"))
+          return
+        }
 
-    if (reopenFeatureForm) {
-      mainWindow.displayToast(qsTr("QuickE activé"))
-    } else {
-      mainWindow.displayToast(qsTr("QuickE désactivé"))
-    }
+        continuousCaptureEnabled = true
+        mainWindow.displayToast(qsTr("Saisie continue activée"))
+      } else {
+        disableContinuousCapture(qsTr("Saisie continue désactivée"))
+      }
     }
   }
 
-  function createEmptyFeature() {
-    let geometry = GeometryUtils.createGeometryFromWkt('')
-    let feature = FeatureUtils.createFeature(dashBoard.activeLayer, geometry)
+  Connections {
+    target: dashBoard
 
-    overlayFeatureFormDrawer.featureModel.feature = feature
-    overlayFeatureFormDrawer.featureModel.resetAttributes(true)
-    overlayFeatureFormDrawer.state = 'Add'
-    overlayFeatureFormDrawer.open()
+    function onActiveLayerChanged() {
+      if (continuousCaptureEnabled && !isActiveLayerPointLayer()) {
+        disableContinuousCapture(qsTr("Saisie continue désactivée"))
+      }
+    }
   }
 
   Connections {
     target: overlayFeatureFormDrawer ? overlayFeatureFormDrawer.featureForm : null
 
     function onAboutToSave() {
-      if (!reopenFeatureForm)
+      if (!canUseContinuousCapture())
         return
 
-      let position = positionSource.positionInformation
-
-      if (positionSource.active && position.latitudeValid && position.longitudeValid) {
-        let pos = positionSource.projectedPosition
-        let newWkt = "POINT(" + pos.x + " " + pos.y + ")"
-        let newGeometry = GeometryUtils.createGeometryFromWkt(newWkt)
-
-        overlayFeatureFormDrawer.featureModel.feature.geometry = newGeometry
-      } else {
-        mainWindow.displayToast(qsTr("GNSS position is not valid."))
-      }
+      updateFeatureGeometryFromGnss()
     }
 
     function onConfirmed() {
-      if (reopenFeatureForm)
-        preNewFeatureTimer.start()
+      if (!canUseContinuousCapture())
+        return
+
+      pendingReopenAfterClose = true
+    }
+
+    function onCancelled() {
+      pendingReopenAfterClose = false
     }
   }
 
-  Timer {
-    id: preNewFeatureTimer
-    interval: 10
-    repeat: false
+  Connections {
+    target: overlayFeatureFormDrawer
 
-    onTriggered: {
-      createEmptyFeature()
+    function onClosed() {
+      if (!canUseContinuousCapture() || !pendingReopenAfterClose)
+        return
+
+      pendingReopenAfterClose = false
+
+      Qt.callLater(function() {
+        createEmptyFeature()
+      })
     }
   }
-
 }
