@@ -3,5 +3,5 @@ name=QuickE
 description=Speeds up repetitive data entry by automatically reopening forms.
 author=Paul CARTERON
 icon=ic_reload_24dp.svg
-version=1.0
+version=1.0.1
 homepage=https://github.com/paul-carteron/qfield-quicke
