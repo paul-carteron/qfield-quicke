@@ -1,12 +1,14 @@
 # QuickE — QField Form Auto-Reopen Plugin
 
-This [QField](https://qfield.org) plugin allows users to speed up point data
-collection by **automatically reopening the feature form** immediately after
-saving. This creates a rapid, continuous entry workflow ideal for inventories,
+The QuickE [QField](https://qfield.org) plugin continuous data collection mode that **automatically reopen the feature form** . This creates a rapid, continuous entry workflow ideal for inventories,
 sampling points, or any repeated capture.
 
-`QuickE` inserts each new feature at the **current position** and opens a
-fresh form
+- `QuickE` inserts each new feature at the **current position**
+- `QuickE` works only for point features.
+
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/7c039821-6ee1-48b7-853f-efbff0d1a57d" height="400">
+</p>
 
 # Usage
 
