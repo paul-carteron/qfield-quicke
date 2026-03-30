@@ -76,9 +76,8 @@ Item {
 
     property bool validLayer: isActiveLayerPointLayer()
 
-    bgcolor: continuousCaptureEnabled ? Theme.mainColor : Theme.controlBackgroundDisabledColor
+    bgcolor: continuousCaptureEnabled ? Theme.mainColor :  "#aaaaaa"
     iconColor: continuousCaptureEnabled ? Theme.darkGray : Theme.mainTextDisabledColor
-    opacity: continuousCaptureEnabled ? 1.0 : 0.45
 
     onClicked: {
       if (!continuousCaptureEnabled) {
