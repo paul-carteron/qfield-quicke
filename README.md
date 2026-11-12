@@ -1,20 +1,26 @@
 # QuickE, the Auto-Reopening Form plugin
 
+<img align="right" width="150" alt="quicke-qrcode" src="https://github.com/user-attachments/assets/1a03441c-c676-4d61-b30f-fa84192bc28c" />
+
 The `QuickE` plugin add a continuous capture mode that automatically reopen the current layer feature form. This allow for a rapid and continuous entry workflow !
 
 `QuickE` works only for point features and inserts each new feature at the **current position**.
 
-<p align="center">
-  <img src="https://github.com/user-attachments/assets/7c039821-6ee1-48b7-853f-efbff0d1a57d" height="400">
-</p>
 
-# How to use QuickE
+# How to use
 
 1. Activate position and select an editable layer;
 2. Tap the `QuickE` button in the plugin toolbar to activate continuous capture mode;
 3. Add a point and save it, the form will reopens automatically;
 4. To stop continuous capture for current layer, simply cancel the form;
 5. Tap the `QuickE` button toolbar again if you want to disable continuous capture.
+
+# How it works
+
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/7c039821-6ee1-48b7-853f-efbff0d1a57d" height="400">
+</p>
+
 
 # Details
 
