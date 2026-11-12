@@ -27,4 +27,4 @@ The `QuickE` plugin add a continuous capture mode that automatically reopen the 
 
 # Installation
 
-To install the plugin, download the latest release from the [releases page]([url](https://github.com/paul-carteron/qfield-quicke/releases/tag/v1.0.2)) and follow the [plugin installation guide](https://docs.qfield.org/how-to/advanced-how-tos/plugins/#application-plugins).
+To install the plugin, download the latest release from the [releases page](https://github.com/paul-carteron/qfield-quicke/releases/tag/v1.0.2) and follow the [plugin installation guide](https://docs.qfield.org/how-to/advanced-how-tos/plugins/#application-plugins).
