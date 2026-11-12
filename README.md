@@ -1,22 +1,30 @@
-# QuickE — QField Form Auto-Reopen Plugin
+# QuickE, the Auto-Reopening Form plugin
 
-The QuickE [QField](https://qfield.org) plugin continuous data collection mode that **automatically reopen the feature form** . This creates a rapid, continuous entry workflow ideal for inventories,
-sampling points, or any repeated capture.
+The `QuickE` plugin add a continuous capture mode that automatically reopen the current layer feature form. This allow for a rapid and continuous entry workflow !
 
-- `QuickE` inserts each new feature at the **current position**
-- `QuickE` works only for point features.
+`QuickE` works only for point features and inserts each new feature at the **current position**.
 
 <p align="center">
   <img src="https://github.com/user-attachments/assets/7c039821-6ee1-48b7-853f-efbff0d1a57d" height="400">
 </p>
 
-# Usage
+# How to use QuickE
 
-1. Activate GNSS and select an editable layer.  
-2. Tap the **QuickE** button in the plugin toolbar to activate quick entry.
-4. Save the feature — the form reopens automatically for the next point.  
-5. Cancel the form at any time to return to normal behavior.
+1. Activate position and select an editable layer;
+2. Tap the `QuickE` button in the plugin toolbar to activate continuous capture mode;
+3. Add a point and save it, the form will reopens automatically;
+4. To stop continuous capture for current layer, simply cancel the form;
+5. Tap the `QuickE` button toolbar again if you want to disable continuous capture.
+
+# Details
+
+- When saving a new point, `QuickE` uses the current position and converts it into the layer's CRS;
+- After a successful new-point save, `QuickE` opens a new feature form on the same layer;
+- Editing an existing point does not change its position or trigger automatic reopening;
+- Cancelling the form ends the current entry sequence. `QuickE` remains enabled until you disable it using the toolbar button;
+- Switching to a line, polygon or table layer automatically disables `QuickE`;
+- If position is inactive or its coordinates are invalid, `QuickE` displays a warning and leaves the geometry unchanged. This warning does not itself block saving.
 
 # Installation
 
-To install the plugin, download the latest release from the [releases page]([url](https://github.com/paul-carteron/qfield-quicke/releases/tag/v0.1)) and follow the [plugin installation guide](https://docs.qfield.org/how-to/plugins/#application-plugins).
+To install the plugin, download the latest release from the [releases page]([url](https://github.com/paul-carteron/qfield-quicke/releases/tag/v0.1)) and follow the [plugin installation guide](https://docs.qfield.org/how-to/advanced-how-tos/plugins/#application-plugins).
